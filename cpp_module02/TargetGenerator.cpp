@@ -1,29 +1,36 @@
 #include "TargetGenerator.hpp"
 
+void TargetGenerator::learnTargetType(ATarget * asp)
+{
+    if(asp)
+    {
+        if(store_book.find(asp->getType()) == store_book.end())
+            store_book[asp->getType()] = asp;
+    }
+}
+
+void TargetGenerator::forgetTargetType(const std::string & name)
+{
+        if(store_book.find(name) != store_book.end())
+            store_book.erase(name);
+}
+
+ATarget* TargetGenerator::createTarget(const std::string &name)
+{
+    ATarget *tmp = NULL;
+    if(store_book.find(name) != store_book.end())
+    {
+        tmp = store_book.find(name)->second;
+    }
+    return tmp;
+}
+
 TargetGenerator::TargetGenerator()
-{}
+{
+    
+}
 
 TargetGenerator::~TargetGenerator()
-{}
-
-void TargetGenerator::learnTargetType(ATarget* target)
 {
-	if (target)
-	{
-		_target[target->getType()] = target;
-	}
-}
 
-void TargetGenerator::forgetTargetType(std::string const & target)
-{
-	if (_target.find(target) != _target.end())
-		_target.erase(_target.find(target));
-}
-
-ATarget* TargetGenerator::createTarget(std::string const &target)
-{
-	ATarget* tmp = NULL;
-	if (_target.find(target) != _target.end())
-		tmp = _target[target];
-	return (tmp);
 }

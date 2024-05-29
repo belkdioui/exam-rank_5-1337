@@ -1,44 +1,48 @@
 #include "Warlock.hpp"
-#include "ASpell.hpp"
 
-Warlock::Warlock(const std::string& Name, const std::string& Title):name(Name), title(Title)
+const std::string & Warlock::getName() const
 {
-    std::cout<<getName()<<": This looks like another boring day."<<std::endl;
+    return name;
 }
-Warlock::~Warlock()
+const std::string & Warlock::getTitle() const
 {
-    std::cout<<getName()<<": My job here is done!"<<std::endl;
+    return title;
 }
 
-const std::string& Warlock::getName() const
-{return name;}
-
-const std::string& Warlock::getTitle() const
-{return title;}
-
-void Warlock::setTitle(const std::string & Title)
+void Warlock::setTitle (const std::string & Title)
 {
     title = Title;
 }
 
+Warlock::Warlock(const std::string & Name, const std::string & Title):name(Name), title(Title)
+{
+    std::cout<<name<<": This looks like another boring day."<<std::endl;
+}
+
+Warlock::~Warlock()
+{
+    std::cout<<name<<": My job here is done!"<<std::endl;
+}
+
 void Warlock::introduce() const
 {
-    std::cout<<this->getName()<<": I am "<<getName()<<", "<<getTitle()<<"!"<<std::endl;
+    std::cout<<name<<": I am "<<name<<", "<<title<<"!"<<std::endl;
 }
 
-void Warlock::learnSpell(ASpell * spel)
+void Warlock::learnSpell(ASpell * asp)
 {
-    _spelbook.learnSpell(spel);
-}
-void Warlock::forgetSpell(std::string name_spel)
-{
-    _spelbook.createSpell(name_spel);
+    spelbook.learnSpell(asp);
 }
 
-void Warlock::launchSpell(std::string spel_name, const ATarget& tar)
+void Warlock::forgetSpell(std::string name)
 {
-    if (_spelbook.createSpell(spel_name)) 
-    {
-        _spelbook.createSpell(spel_name)->launch(tar);
-    }
+    spelbook.forgetSpell(name);
+}
+
+void Warlock::launchSpell(std::string name, const ATarget & ata)
+{
+    ASpell *spell;
+    spell = spelbook.createSpell(name);
+    if(spell != NULL)
+        spell->launch(ata);
 }

@@ -1,9 +1,14 @@
-
 #include "Dummy.hpp"
-Dummy::Dummy():ATarget("Target Practice Dummy"){}
 
-ATarget *Dummy::clone() const
+Dummy::Dummy():ATarget("Target Practice Dummy")
 {
-    return new Dummy();
 }
-Dummy::~Dummy(){}
+
+Dummy * Dummy::clone() const
+{
+    return new Dummy;
+}
+
+Dummy::~Dummy()
+{
+}

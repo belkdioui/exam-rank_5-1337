@@ -1,14 +1,22 @@
 #include "ATarget.hpp"
-#include "ASpell.hpp"
 
-const std::string &ATarget::getType() const
+const std::string & ATarget::getType() const
 {
     return type;
 }
-ATarget::ATarget(std::string Type):type(Type){}
-void ATarget::getHitBySpell(ASpell const & spel) const
+
+
+ATarget::ATarget(const std::string & Type):type(Type)
 {
-    std::cout<<getType()<<" has been "<<spel.getEffects()<<"!"<<std::endl;
 }
 
-ATarget::~ATarget(){}
+
+void ATarget::getHitBySpell(const ASpell & asp) const
+{
+    std::cout<<type<<" has been "<<asp.getEffects()<<"!"<<std::endl;
+}
+
+ATarget::~ATarget()
+{
+    
+}
